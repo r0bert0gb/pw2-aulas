@@ -24,7 +24,8 @@ public class User {
 				.upn("email@falso.com")
 				.groups(new HashSet<>(Arrays.asList("User", "Admin")))
 				.claim(Claims.full_name, "Fulano Nome Completo")
-				.sign();
+				.innerSign()
+				.encrypt();
 	}
 
 }
