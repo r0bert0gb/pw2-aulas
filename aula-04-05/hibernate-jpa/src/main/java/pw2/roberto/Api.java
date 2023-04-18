@@ -21,17 +21,18 @@ public class Api {
     @Transactional
     public User createUser(@FormParam("name") String name) {
 
-        Channel channel = new Channel();
+        var message = new Message();
+        message.setText("Mensagem de teste");
+        message.persist();
 
-        channel.setHash("Canal");
+        var channel = new Channel();
+        channel.setHash("Hash do Canal");
+        channel.addMessage(message);
         channel.persist();
 
         User user = new User();
-
         user.setName(name);
-
         user.addChannel(channel);
-
         user.persist();
 
         return user;

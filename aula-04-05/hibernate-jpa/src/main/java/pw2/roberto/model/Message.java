@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class Message extends PanacheEntity {
 
-    private String text;
+	private String text;
+
+	// TODO teste sem getter e setter de id
 
 }

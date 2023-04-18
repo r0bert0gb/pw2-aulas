@@ -15,18 +15,29 @@ import lombok.Setter;
 @Setter
 public class User extends PanacheEntity {
 
-    private String name;
+	private String name;
+	private String hash;
 
-    @ManyToMany
-    private List<Channel> channels;
+	@JsonBackReference
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Channel> channels;
 
-    public User() {
-        this.channels = new ArrayList<>();
-    }
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private List<Message> messages;
 
-    public void addChannel(Channel channel) {
+	public User() {
 
-        this.channels.add(channel);
-    }
+		this.channels = new ArrayList<>();
+		this.messages = new ArrayList<>();
+	}
 
+	public void addChannel(Channel channel) {
+
+		this.channels.add(channel);
+	}
+	public void addMessage(Message message) {
+
+		this.messages.add(message);
+	}
 }

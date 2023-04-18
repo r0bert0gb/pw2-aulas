@@ -20,8 +20,21 @@ public class Channel extends PanacheEntity {
     @ManyToMany(mappedBy = "channels")
     private List<User> users;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "channel_id")
+    private List<Message> messages;
+
     public Channel() {
         this.users = new ArrayList<>();
+        this.messages = new ArrayList<>();
+    }
+
+    public void addUser(User user) {
+        this.users.add(user);
+    }
+
+    public void addMessage(Message message) {
+        this.messages.add(message);
     }
 
 }
